@@ -137,7 +137,9 @@ for t in range(epochs):
     train(train_dataloader, model, loss_fn, optimizer)
     train(train_dataloader, model, loss_fn, optimizer)
 
-    ###################################################
+    ##########################################################
+    # Run PCA analysis on modified model weights for Layer 1 #
+    ##########################################################
     m_1 = model.linear1
     print(f"Model Data Shape: {m_1.weight.data.shape}")
     wData_1 = torch.sum(m_1.weight.data,1)[:,None]

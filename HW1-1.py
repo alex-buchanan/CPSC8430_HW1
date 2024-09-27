@@ -94,42 +94,10 @@ class MLPexplicit_1(nn.Module):
         output = self.linear2(h1) ## <- NOTE
         return(output)
 
-class MLPexplicit_2(nn.Module):
-    '''
-    Multi-layer perceptron for non-linear regression.
-    '''
-    def __init__(self, nInput, nHidden, nOutput):
-        super(MLPexplicit_2, self).__init__()
-        self.nInput  = nInput
-        self.nHidden = nHidden
-        self.nOutput = nOutput
-        self.linear1 = nn.Linear(self.nInput,  self.nHidden)
-        self.linear2 = nn.Linear(self.nHidden, self.nHidden)
-        self.linear3 = nn.Linear(self.nHidden, self.nHidden)
-        self.linear4 = nn.Linear(self.nHidden, self.nOutput)
-        # self.linear5 = nn.Linear(self.nHidden, self.nHidden)
-        # self.linear6 = nn.Linear(self.nHidden, self.nHidden)
-        # self.linear7 = nn.Linear(self.nHidden, self.nHidden)
-        # self.linear8 = nn.Linear(self.nHidden, self.nOutput)
-        self.ReLU    = nn.ReLU()
-
-    def forward(self, x):
-        h1 = self.ReLU(self.linear1(x))
-        h2 = self.ReLU(self.linear2(h1))
-        h3 = self.ReLU(self.linear3(h2))
-        # h4 = self.ReLU(self.linear4(h3))
-        # h5 = self.ReLU(self.linear5(h4))
-        # h6 = self.ReLU(self.linear6(h5))
-        # h7 = self.ReLU(self.linear7(h5))
-        output = self.linear4(h3) ## <- NOTE
-        return(output)
-
 mlpExplicit_1 = MLPexplicit_1(nInput, nHidden, nOutput)
-mlpExplicit_2 = MLPexplicit_2(nInput, 30, nOutput)
 
 # which model to use from here onwards
 model_1 = mlpExplicit_1.to(device)
-model_2 = mlpExplicit_2.to(device)
 
 ##################################################
 ## network 2 dimension parameters

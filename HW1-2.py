@@ -77,16 +77,29 @@ class NeuralNetwork(nn.Module):
         logits = self.linear2(l1)
         return logits
 
-model_1 = NeuralNetwork(32, 16, 10).to(device)
-model_2 = NeuralNetwork(32, 64, 10).to(device)
-model_3 = NeuralNetwork(32, 256, 10).to(device)
-model_4 = NeuralNetwork(32, 1024, 10).to(device)
+model_1 = NeuralNetwork(32, 4, 10).to(device)
+model_2 = NeuralNetwork(32, 8, 10).to(device)
+model_3 = NeuralNetwork(32, 16, 10).to(device)
+model_4 = NeuralNetwork(32, 32, 10).to(device)
+model_5 = NeuralNetwork(32, 64, 10).to(device)
+model_6 = NeuralNetwork(32, 128, 10).to(device)
+model_7 = NeuralNetwork(32, 256, 10).to(device)
+model_8 = NeuralNetwork(32, 512, 10).to(device)
+model_9 = NeuralNetwork(32, 1024, 10).to(device)
+model_10 = NeuralNetwork(32, 2048, 10).to(device)
+
 
 loss_fn = nn.CrossEntropyLoss()
 optimizer_1 = torch.optim.SGD(model_1.parameters(), lr=1e-3)
 optimizer_2 = torch.optim.SGD(model_2.parameters(), lr=1e-3)
 optimizer_3 = torch.optim.SGD(model_3.parameters(), lr=1e-3)
 optimizer_4 = torch.optim.SGD(model_4.parameters(), lr=1e-3)
+optimizer_5 = torch.optim.SGD(model_5.parameters(), lr=1e-3)
+optimizer_6 = torch.optim.SGD(model_6.parameters(), lr=1e-3)
+optimizer_7 = torch.optim.SGD(model_7.parameters(), lr=1e-3)
+optimizer_8 = torch.optim.SGD(model_8.parameters(), lr=1e-3)
+optimizer_9 = torch.optim.SGD(model_9.parameters(), lr=1e-3)
+optimizer_10 = torch.optim.SGD(model_10.parameters(), lr=1e-3)
 
 loss_train_1 = []
 loss_test_1  = []
@@ -107,6 +120,36 @@ loss_train_4 = []
 loss_test_4  = []
 accy_train_4 = []
 accy_test_4  = []
+
+loss_train_5 = []
+loss_test_5  = []
+accy_train_5 = []
+accy_test_5  = []
+
+loss_train_6 = []
+loss_test_6  = []
+accy_train_6 = []
+accy_test_6  = []
+
+loss_train_7 = []
+loss_test_7  = []
+accy_train_7 = []
+accy_test_7  = []
+
+loss_train_8 = []
+loss_test_8  = []
+accy_train_8 = []
+accy_test_8  = []
+
+loss_train_9 = []
+loss_test_9  = []
+accy_train_9 = []
+accy_test_9  = []
+
+loss_train_10 = []
+loss_test_10  = []
+accy_train_10 = []
+accy_test_10  = []
 
 def train(dataloader, model, loss_fn, optimizer, loss_, accy_):
     size = len(dataloader.dataset)
@@ -171,64 +214,34 @@ for t in range(epochs):
     print(f"Train model 4, dim 1024: ")
     train(train_dataloader, model_4, loss_fn, optimizer_4, loss_train_4, accy_train_4)
     test(test_dataloader, model_4, loss_fn, loss_test_4, accy_test_4)
-'''
-    ###################################################
-    m_1 = model.linear1
-    print(f"Model Data Shape: {m_1.weight.data.shape}")
-    wData_1 = torch.sum(m_1.weight.data,1)[:,None]
-    wData_1 = torch.transpose(wData_1, 0, 1)
-    dataTensor_1 = torch.cat((dataTensor_1, torch.Tensor.cpu(wData_1)), 0)
-    print(f"wData_1: {wData_1.shape}")
-    print(f"wData_1: {wData_1}")
-    if (t+1) % 2 == 0:
-        principal.fit(torch.Tensor.cpu(dataTensor_1[1:]))
-        weight_1.append(np.array(principal.transform(torch.Tensor.cpu(dataTensor_1[1:]))))
-        print(f"Weight Values: {weight_1}")
-        del dataTensor_1
-        dataTensor_1 = torch.empty((1, 32), dtype=torch.float32).fill_(0)
-    ###################################################
-    m_2 = model.linear2
-    wData_2 = torch.sum(m_2.weight.data,1)[:, None]
-    wData_2 = torch.transpose(wData_2, 0, 1)
-    dataTensor_2 = torch.cat((dataTensor_2, torch.Tensor.cpu(wData_2)), 0)
-    print(f"wData_2 Shape: {dataTensor_2.shape}")
-    if (t+1) % 2 == 0:
-        principal_2.fit(torch.Tensor.cpu(dataTensor_2[1:]))
-        weight_2.append(np.array(principal_2.transform(torch.Tensor.cpu(dataTensor_2[1:]))))
-        del dataTensor_2
-        dataTensor_2 = torch.empty((1, 32), dtype=torch.float32).fill_(0)
-    ###################################################
-    m_3 = model.linear3
-    wData_3 = torch.sum(m_3.weight.data,1)[:, None]
-    wData_3 = torch.transpose(wData_3, 0, 1)
-    dataTensor_3 = torch.cat((dataTensor_3, torch.Tensor.cpu(wData_3)), 0)
-    print(f"wData_3 Shape: {dataTensor_3.shape}")
-    if (t+1) % 2 == 0:
-        principal_3.fit(torch.Tensor.cpu(dataTensor_3[1:]))
-        weight_3.append(np.array(principal_3.transform(torch.Tensor.cpu(dataTensor_3[1:]))))
-        del dataTensor_3
-        dataTensor_3 = torch.empty((1, 32), dtype=torch.float32).fill_(0)
-    ###################################################
-    m_4 = model.linear4
-    wData_4 = torch.sum(m_4.weight.data,1)[:, None]
-    wData_4 = torch.transpose(wData_4, 0, 1)
-    dataTensor_4 = torch.cat((dataTensor_4, torch.Tensor.cpu(wData_4)), 0)
-    print(f"wData_4 Shape: {dataTensor_4.shape}")
-    if (t+1) % 2 == 0:
-        principal_4.fit(torch.Tensor.cpu(dataTensor_4[1:]))
-        weight_4.append(np.array(principal_4.transform(torch.Tensor.cpu(dataTensor_4[1:]))))
-        del dataTensor_4
-        dataTensor_4 = torch.empty((1, 10), dtype=torch.float32).fill_(0)
-    ###################################################
-'''
-    # test(test_dataloader, model_1, loss_fn, loss_test_1, accy_test_1)
+
+    print(f"Train model 5, dim 1024: ")
+    train(train_dataloader, model_5, loss_fn, optimizer_5, loss_train_5, accy_train_5)
+    test(test_dataloader, model_5, loss_fn, loss_test_5, accy_test_5)
+
+    print(f"Train model 6, dim 1024: ")
+    train(train_dataloader, model_6, loss_fn, optimizer_6, loss_train_6, accy_train_6)
+    test(test_dataloader, model_6, loss_fn, loss_test_6, accy_test_6)
+
+    print(f"Train model 7, dim 1024: ")
+    train(train_dataloader, model_7, loss_fn, optimizer_7, loss_train_7, accy_train_7)
+    test(test_dataloader, model_7, loss_fn, loss_test_7, accy_test_7)
+
+    print(f"Train model 8, dim 1024: ")
+    train(train_dataloader, model_8, loss_fn, optimizer_8, loss_train_8, accy_train_8)
+    test(test_dataloader, model_8, loss_fn, loss_test_8, accy_test_8)
+
+    print(f"Train model 9, dim 1024: ")
+    train(train_dataloader, model_9, loss_fn, optimizer_9, loss_train_9, accy_train_9)
+    test(test_dataloader, model_9, loss_fn, loss_test_9, accy_test_9)
+
+    print(f"Train model 10, dim 1024: ")
+    train(train_dataloader, model_10, loss_fn, optimizer_10, loss_train_10, accy_train_10)
+    test(test_dataloader, model_10, loss_fn, loss_test_10, accy_test_10)
 
 print("Done!")
 
 # plot the data
-# plt.figure()
-# plt.plot(epoch, l_1, color="r", alpha= 1.0, label= "Plt_1")
-# plt.yscale('log')
 fig = plt.figure()
 
 # training & testing losses
@@ -248,6 +261,24 @@ ax_1.plot(range(epochs), loss_train_3, 'g--', label= "Loss_Train_3")
 ax_1.plot(range(epochs), loss_test_4, 'y', label= "Loss_Test_4")
 ax_1.plot(range(epochs), loss_train_4, 'y--', label= "Loss_Train_4")
 
+ax_1.plot(range(epochs), loss_test_5, 'y', label= "Loss_Test_5")
+ax_1.plot(range(epochs), loss_train_5, 'y--', label= "Loss_Train_5")
+
+ax_1.plot(range(epochs), loss_test_6, 'y', label= "Loss_Test_6")
+ax_1.plot(range(epochs), loss_train_6, 'y--', label= "Loss_Train_6")
+
+ax_1.plot(range(epochs), loss_test_7, 'y', label= "Loss_Test_7")
+ax_1.plot(range(epochs), loss_train_7, 'y--', label= "Loss_Train_7")
+
+ax_1.plot(range(epochs), loss_test_8, 'y', label= "Loss_Test_8")
+ax_1.plot(range(epochs), loss_train_8, 'y--', label= "Loss_Train_8")
+
+ax_1.plot(range(epochs), loss_test_9, 'y', label= "Loss_Test_9")
+ax_1.plot(range(epochs), loss_train_9, 'y--', label= "Loss_Train_9")
+
+ax_1.plot(range(epochs), loss_test_10, 'y', label= "Loss_Test_10")
+ax_1.plot(range(epochs), loss_train_10, 'y--', label= "Loss_Train_10")
+
 ax_1.legend()
 
 ax_2 = plt.subplot(1,2,2)
@@ -265,6 +296,24 @@ ax_2.plot(range(epochs), accy_train_3, 'g--', label= "Accy_Train_3")
 
 ax_2.plot(range(epochs), accy_test_4, 'y', label= "Accy_Test_4")
 ax_2.plot(range(epochs), accy_train_4, 'y--', label= "Accy_Train_4")
+
+ax_2.plot(range(epochs), accy_test_5, 'y', label= "Accy_Test_5")
+ax_2.plot(range(epochs), accy_train_5, 'y--', label= "Accy_Train_5")
+
+ax_2.plot(range(epochs), accy_test_6, 'y', label= "Accy_Test_6")
+ax_2.plot(range(epochs), accy_train_6, 'y--', label= "Accy_Train_6")
+
+ax_2.plot(range(epochs), accy_test_7, 'y', label= "Accy_Test_7")
+ax_2.plot(range(epochs), accy_train_7, 'y--', label= "Accy_Train_7")
+
+ax_2.plot(range(epochs), accy_test_8, 'y', label= "Accy_Test_8")
+ax_2.plot(range(epochs), accy_train_8, 'y--', label= "Accy_Train_8")
+
+ax_2.plot(range(epochs), accy_test_9, 'y', label= "Accy_Test_9")
+ax_2.plot(range(epochs), accy_train_9, 'y--', label= "Accy_Train_9")
+
+ax_2.plot(range(epochs), accy_test_10, 'y', label= "Accy_Test_10")
+ax_2.plot(range(epochs), accy_train_10, 'y--', label= "Accy_Train_10")
 
 ax_2.legend()
 
