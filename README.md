@@ -2,11 +2,15 @@
 ## 1 - Deep vs Shallow
 ### 1-1 Simulate a Function
 ![](./HW1-1.png)
+#### Bonus Function
+![](./HW1_LossPlot_15_8_500pts.png)
+![](./HW1_FcnPlot_15_8_500pts.png)
 ### 1-2 Train on Tasks
 ![](./HW1-1.png)
 ### 1-1 Report Questions
 #### Simulate a Function:
 - Used 4 linear models with a rectified linear unit function as the activation function.  Functions were composed of the same number of parameters, but the depth of the models was varied from shallow to deep with the last model having 8 layers of 15 parameters per layer. 
+- The above was also repeated for another non-linear function as well.
 - Results clearly showed that a balance between the number of layers (4) and parameters (30) per layer was necessary for the most accurate results after 1000 training cycles or epochs.
 #### Train on Actual Tasks:
 - MNIST training data was used to train a 2 layer convolution with different kernel sizes, and 2 linear layers of varying size depending on the model used.
@@ -43,6 +47,17 @@
 ![](./Accuracy_Batch.png)
 ### 1-3 Report Questions
 #### Can A Network Fit Random Labels
+- MNIST data set was used for training, randomly subselecting half of the dataset to use during training and half of the labels of the subset being randomly swapped.
+- learning rate was 1e-3.
+- Stochastic Gradient Descent was used as the optimizer.
 #### Number of Parameters vs. Generalization
+- Variation between the 10 models was based on the number of parameters used by each model's linear layers over 3 epochs.
+- MNIST data set used, with 2 convolution layers and 2 linear layers
 #### Flatness vs Generalization - Part 1
+- MNIST data set was used, with two models, one being fed batches of 64 test and training samples at a time, and the other 1024 samples.
+- Linear interpolation between the parameters of each model was performed for a varying number of alpha values, and the resulting model was trained and tested with cross entropy and accuracy of each data set being recorded.
+- The learning rate was changed from 1e-3 to 1e-2 then the previous process was repeated and results recorded and plotted
 #### Flatness vs Generalization - Part 2
+- MNIST data was used, with 5 different batch sizes over identical models similar to the ones used previously.
+- Cross entropy, loss, accuracy, and sensitivity were all calculated for each run of each model, and the results charted.
+- The only odd thing was that cross entropy loss decreased as the batch size increased.  

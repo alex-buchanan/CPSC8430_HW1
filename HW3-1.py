@@ -155,8 +155,8 @@ for t in range(epochs):
     test_dataloader = DataLoader(test_subset, batch_size=batch_size)
 
     train(train_dataloader, model, loss_fn, optimizer)
-
     test(test_dataloader, model, loss_fn)
+    
 print("Done!")
 
 # plot the dataecurse=True
