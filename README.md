@@ -1,7 +1,7 @@
 # CPSC8430_HW1
 ## 1 - Simulate and Train
 ### 1-1 Simulate a Function
-![](./HW1_LossPlot_Compilation_550pts_2.png)
+![](./HW1_LossPlot_Compilation_500pts_2.png)
 ### 1-2 Train on Tasks
 ## 2 - Optimization
 ### 2-1 Visualize the Optimization Process
