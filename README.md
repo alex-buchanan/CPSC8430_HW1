@@ -6,9 +6,9 @@
 ![](./HW1-2.png)
 ## 2 - Optimization
 ### 2-1 Visualize the Optimization Process
-![](./HW1_MNIST_Linear_Conv_Coeffs_2.png)
+![](./HW2-1.png)
 ### 2-2 Observe Gradient Norm
-![](./MNIST_Grad_Decay.png)
+![](./HW2-2.png)
 ### 2-3 Compute Minimal Ratio
 --
 ## 3 - Generalization
