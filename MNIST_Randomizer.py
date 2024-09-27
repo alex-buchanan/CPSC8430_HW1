@@ -175,17 +175,12 @@ for t in range(epochs):
 print("Done!")
 
 # plot the dataecurse=True
-plt.figure()
-plt.plot(range(epochs), l_test, color="r", alpha= 1.0, label= "Plt_Test")
-plt.plot(range(epochs), l_train, color="b", alpha= 1.0, label= "Plt_Train")
-# plt.yscale('log')
+fig, ax = plt.subplots()
+ax.plot(range(epochs), l_test, color="r", alpha= 1.0, label= "Accuracy")
+ax.plot(range(epochs), l_train, color="b", alpha= 1.0, label= "Loss")
+ax.set_xlabel('Epoch')
 
-# fig, ax = plt.subplots()
-
-#x_1 = [x[0] for x in weight_1]
-#y_1 = [y[1] for y in weight_1]
-#ax.scatter(x_1,y_1, c='tab:blue', label='L_1')
-
-#ax.legend()
+fig.suptitle('Accuracy & Loss when randomized')
+ax.legend()
 
 plt.show()

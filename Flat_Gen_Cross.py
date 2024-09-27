@@ -247,20 +247,23 @@ ax1.set_ylabel('Accuracy')
 ax1.plot([(t/100.0)-1.0 for t in range(0,300)], theta_alpha_train_accy, 'r')
 ax1.plot([(t/100.0)-1.0 for t in range(0,300)], theta_alpha_test_accy, 'r--')
 ax1.axis([-1, 2, 0, 100])
+ax1.legend()
 
 ax2 = ax1.twinx()
 ax2.set_ylabel('Entropy')
 ax2.plot([(t/100.0)-1.0 for t in range(0,300)], cross_entropy_train, 'b')
 ax2.plot([(t/100.0)-1.0 for t in range(0,300)], cross_entropy_test, 'b--')
 ax2.set_yscale('log')
-ax2.axis([-1, 2, 0.001, 1000])
+ax2.axis([-1, 2, 0.1, 1000])
+ax2.legend()
 
 fig1.suptitle('$ \\alpha $ Variation', fontsize=16)
 fig1.tight_layout()
 
 
 
-# plot the dataecurse=True
+# plot the data
+'''
 plt.figure()
 plt.subplot(1,2,1)
 plt.plot(range(epochs), l_test_1, 'ro', label= "Plt_Test")
@@ -277,7 +280,7 @@ plt.axis([0, 20, 0, 100])
 plt.title('Batch = 1024')
 plt.ylabel('Loss')
 plt.xlabel('Epoch')
-
+'''
 # plt.yscale('log')
 
 # fig, ax = plt.subplots()

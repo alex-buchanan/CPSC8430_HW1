@@ -13,11 +13,11 @@
 --
 ## 3 - Generalization
 ### 3-1 Label Randomization
-![](./3-1-MNIST_Random.png)
+![](./HW3-1.png)
 ### 3-2 Number of Parameters
 --
 ### 3-3 Flatness v.s. Generalization
 #### 1 - Loss, Accuracy, Cross Entropy
-![](./Alpha_Variation_e-3.png)
+![](./HW3-3-1.png)
 #### 2 - Sensitivity
 ![](./Accuracy_Batch.png)
