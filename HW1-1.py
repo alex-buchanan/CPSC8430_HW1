@@ -55,6 +55,10 @@ yObs = np.sin(5*np.pi*xObs)/(5*np.pi*xObs) # + yNoise
 ## network 1 dimension parameters
 ##################################################
 
+nInput  = 1
+nHidden = 60
+nOutput = 1
+
 ##################################################
 ## set up multi-layer perceptron w/ PyTorch
 ##    -- version 1 --
@@ -71,20 +75,69 @@ class MLPexplicit_1(nn.Module):
         self.nOutput = nOutput
         self.linear1 = nn.Linear(self.nInput,  self.nHidden)
         self.linear2 = nn.Linear(self.nHidden, self.nOutput)
+        # self.linear3 = nn.Linear(self.nHidden, self.nHidden)
+        # self.linear4 = nn.Linear(self.nHidden, self.nHidden)
+        # self.linear5 = nn.Linear(self.nHidden, self.nHidden)
+        # self.linear6 = nn.Linear(self.nHidden, self.nHidden)
+        # self.linear7 = nn.Linear(self.nHidden, self.nHidden)
+        # self.linear8 = nn.Linear(self.nHidden, self.nOutput)
         self.ReLU    = nn.ReLU()
 
     def forward(self, x):
         h1 = self.ReLU(self.linear1(x))
+        # h2 = self.ReLU(self.linear2(h1))
+        # h3 = self.ReLU(self.linear3(h2))
+        # h4 = self.ReLU(self.linear4(h3))
+        # h5 = self.ReLU(self.linear5(h4))
+        # h6 = self.ReLU(self.linear6(h5))
+        # h7 = self.ReLU(self.linear7(h5))
         output = self.linear2(h1) ## <- NOTE
         return(output)
 
-mlpExplicit_1 = MLPexplicit_1(1, 60, 1)
+class MLPexplicit_2(nn.Module):
+    '''
+    Multi-layer perceptron for non-linear regression.
+    '''
+    def __init__(self, nInput, nHidden, nOutput):
+        super(MLPexplicit_2, self).__init__()
+        self.nInput  = nInput
+        self.nHidden = nHidden
+        self.nOutput = nOutput
+        self.linear1 = nn.Linear(self.nInput,  self.nHidden)
+        self.linear2 = nn.Linear(self.nHidden, self.nHidden)
+        self.linear3 = nn.Linear(self.nHidden, self.nHidden)
+        self.linear4 = nn.Linear(self.nHidden, self.nOutput)
+        # self.linear5 = nn.Linear(self.nHidden, self.nHidden)
+        # self.linear6 = nn.Linear(self.nHidden, self.nHidden)
+        # self.linear7 = nn.Linear(self.nHidden, self.nHidden)
+        # self.linear8 = nn.Linear(self.nHidden, self.nOutput)
+        self.ReLU    = nn.ReLU()
+
+    def forward(self, x):
+        h1 = self.ReLU(self.linear1(x))
+        h2 = self.ReLU(self.linear2(h1))
+        h3 = self.ReLU(self.linear3(h2))
+        # h4 = self.ReLU(self.linear4(h3))
+        # h5 = self.ReLU(self.linear5(h4))
+        # h6 = self.ReLU(self.linear6(h5))
+        # h7 = self.ReLU(self.linear7(h5))
+        output = self.linear4(h3) ## <- NOTE
+        return(output)
+
+mlpExplicit_1 = MLPexplicit_1(nInput, nHidden, nOutput)
+mlpExplicit_2 = MLPexplicit_2(nInput, 30, nOutput)
+
 # which model to use from here onwards
 model_1 = mlpExplicit_1.to(device)
+model_2 = mlpExplicit_2.to(device)
 
 ##################################################
 ## network 2 dimension parameters
 ##################################################
+
+nInput  = 1
+nHidden = 30
+nOutput = 1
 
 ##################################################
 ## set up multi-layer perceptron w/ PyTorch
@@ -104,22 +157,34 @@ class MLPexplicit_2(nn.Module):
         self.linear2 = nn.Linear(self.nHidden, self.nHidden)
         self.linear3 = nn.Linear(self.nHidden, self.nHidden)
         self.linear4 = nn.Linear(self.nHidden, self.nOutput)
+        # self.linear5 = nn.Linear(self.nHidden, self.nHidden)
+        # self.linear6 = nn.Linear(self.nHidden, self.nHidden)
+        # self.linear7 = nn.Linear(self.nHidden, self.nHidden)
+        # self.linear8 = nn.Linear(self.nHidden, self.nOutput)
         self.ReLU    = nn.ReLU()
 
     def forward(self, x):
         h1 = self.ReLU(self.linear1(x))
         h2 = self.ReLU(self.linear2(h1))
         h3 = self.ReLU(self.linear3(h2))
+        # h4 = self.ReLU(self.linear4(h3))
+        # h5 = self.ReLU(self.linear5(h4))
+        # h6 = self.ReLU(self.linear6(h5))
+        # h7 = self.ReLU(self.linear7(h5))
         output = self.linear4(h3) ## <- NOTE
         return(output)
 
-mlpExplicit_2 = MLPexplicit_2(1, 30, 1)
+mlpExplicit_2 = MLPexplicit_2(nInput, nHidden, nOutput)
 # which model to use from here onwards
 model_2 = mlpExplicit_2.to(device)
 
 ##################################################
-## network 3 dimension parameters
+## network 1 dimension parameters
 ##################################################
+
+nInput  = 1
+nHidden = 20
+nOutput = 1
 
 ##################################################
 ## set up multi-layer perceptron w/ PyTorch
@@ -141,6 +206,8 @@ class MLPexplicit_3(nn.Module):
         self.linear4 = nn.Linear(self.nHidden, self.nHidden)
         self.linear5 = nn.Linear(self.nHidden, self.nHidden)
         self.linear6 = nn.Linear(self.nHidden, self.nOutput)
+        # self.linear7 = nn.Linear(self.nHidden, self.nHidden)
+        # self.linear8 = nn.Linear(self.nHidden, self.nOutput)
         self.ReLU    = nn.ReLU()
 
     def forward(self, x):
@@ -149,17 +216,23 @@ class MLPexplicit_3(nn.Module):
         h3 = self.ReLU(self.linear3(h2))
         h4 = self.ReLU(self.linear4(h3))
         h5 = self.ReLU(self.linear5(h4))
+        # h6 = self.ReLU(self.linear6(h5))
+        # h7 = self.ReLU(self.linear7(h5))
         output = self.linear6(h5) ## <- NOTE
         return(output)
 
-mlpExplicit_3 = MLPexplicit_3(1, 20, 1)
+mlpExplicit_3 = MLPexplicit_3(nInput, nHidden, nOutput)
 # which model to use from here onwards
 model_3 = mlpExplicit_3.to(device)
 
 
 ##################################################
-## network 4 dimension parameters
+## network 1 dimension parameters
 ##################################################
+
+nInput  = 1
+nHidden = 15
+nOutput = 1
 
 ##################################################
 ## set up multi-layer perceptron w/ PyTorch
@@ -196,7 +269,7 @@ class MLPexplicit_4(nn.Module):
         output = self.linear8(h7) ## <- NOTE
         return(output)
 
-mlpExplicit_4 = MLPexplicit_4(1, 15, 1)
+mlpExplicit_4 = MLPexplicit_4(nInput, nHidden, nOutput)
 # which model to use from here onwards
 model_4 = mlpExplicit_4.to(device)
 ##################################################
@@ -259,37 +332,31 @@ for epoch in range(0, nTrainSteps):
   for i, data in enumerate(train_dataloader, 0):
     # Get inputs
     inputs, targets = data[0].to(device), data[1].to(device)
-
     # Zero the gradients
     optimizer_1.zero_grad()
     optimizer_2.zero_grad()
     optimizer_3.zero_grad()
     optimizer_4.zero_grad()
-
     # Perform forward pass (make sure to supply the input in the right way)
     outputs_1 = model_1(torch.reshape(inputs, (len(inputs), 1))).squeeze()
     outputs_2 = model_2(torch.reshape(inputs, (len(inputs), 1))).squeeze()
     outputs_3 = model_3(torch.reshape(inputs, (len(inputs), 1))).squeeze()
     outputs_4 = model_4(torch.reshape(inputs, (len(inputs), 1))).squeeze()
-
     # Compute loss
     loss_1 = loss_function(outputs_1, targets)
     loss_2 = loss_function(outputs_2, targets)
     loss_3 = loss_function(outputs_3, targets)
     loss_4 = loss_function(outputs_4, targets)
-
     # Perform backward pass
     loss_1.backward()
     loss_2.backward()
     loss_3.backward()
     loss_4.backward()
-
     # Perform optimization
     optimizer_1.step()
     optimizer_2.step()
     optimizer_3.step()
     optimizer_4.step()
-
     # Print statistics
     current_loss_1 += loss_1.item()
     current_loss_2 += loss_2.item()
@@ -326,21 +393,13 @@ yPred_4 = np.array([torch.Tensor.cpu(model_4.forward(torch.tensor([o]).to(device
 
 # plot the data
 plt.figure()
+plt.plot(e, l_1, color="r", alpha= 1.0, label= "Plt_1")
+plt.plot(e, l_2, color="b", alpha= 1.0, label= "Plt_2")
+plt.plot(e, l_3, color="y", alpha= 1.0, label= "Plt_3")
+plt.plot(e, l_4, color="g", alpha= 1.0, label= "Plt_4")
+plt.yscale('log')
 
-ax1 = plt.subplot(1,2,1)
-ax1.plot(e, l_1, color="r", alpha= 1.0, label= "Loss 1 - 2, 60")
-ax1.plot(e, l_2, color="b", alpha= 1.0, label= "Loss 2 - 4, 30")
-ax1.plot(e, l_3, color="y", alpha= 1.0, label= "Loss 3 - 6, 20")
-ax1.plot(e, l_4, color="g", alpha= 1.0, label= "Loss 4 - 8, 15")
-ax1.set_xlabel('Epoch')
-ax1.set_ylabel('Loss (log)')
-ax1.set_yscale('log')
-ax1.legend()
-ax1.title.set_text('Model Loss')
-
-ax2 = plt.subplot(1,2,2)
-ax2.set_xlabel('Epoch')
-ax2.set_ylabel('Prediction')
+plt.figure()
 d = pd.DataFrame({'xObs' : xObs.detach().numpy(),
                   'yObs' : yObs.detach().numpy(),
                   'yPred_1': yPred_1,
@@ -352,8 +411,6 @@ dWide = pd.melt(d, id_vars = 'xObs', value_vars= ['yObs', 'yPred_1', 'yPred_2', 
 sns.scatterplot(data = dWide, x = 'xObs', y = 'value', hue = 'variable', alpha = 0.7)
 x = np.linspace(start = 0, stop = 1, num = 1000)
 y = goalFun(x)
-
-ax2.plot(x,y, color='g', alpha = 0.5)
-ax2.title.set_text('Model Prediction')
+plt.plot(x,y, color='g', alpha = 0.5)
 
 plt.show()

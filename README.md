@@ -1,12 +1,9 @@
 # CPSC8430_HW1
-## 1 - Simulate and Train
+## 1 - Deep vs Shallow
 ### 1-1 Simulate a Function
-![](./HW1_LossPlot_Compilation_500pts_2.png)
-![](./HW1_FcnPlot_Compilation_500pts_2.png)
-![](./HW1_LossPlot_Compilation_500pts.png)
-![](./HW1_FcnPlot_Compilation_500pts.png)
+![](./HW1-1.png)
 ### 1-2 Train on Tasks
---
+![](./HW1-2.png)
 ## 2 - Optimization
 ### 2-1 Visualize the Optimization Process
 ![](./HW1_MNIST_Linear_Conv_Coeffs_2.png)
