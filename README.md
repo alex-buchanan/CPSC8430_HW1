@@ -2,7 +2,10 @@
 ## 1 - Simulate and Train
 ### 1-1 Simulate a Function
 ![](./HW1_LossPlot_Compilation_500pts_2.png)
+![](./HW1_FcnPlot_Compilation_500pts_2.png)
+![](./HW1_FcnPlot_Compilation_500pts.png)
 ### 1-2 Train on Tasks
+![](./HW1_LossPlot_Compilation_500pts.png)
 ## 2 - Optimization
 ### 2-1 Visualize the Optimization Process
 ### 2-2 Observe Gradient Norm
